@@ -18,6 +18,10 @@ $fecha = date('Y-m-d H:i:s');
 
 $tabla_asignacion_tiendas = $prefijo . "a_asignacion_pedidos";
 
-$sql = "UPDATE $tabla_asignacion_tiendas SET status = 3, fin_asignacion = '$fecha' WHERE pedido_id = $cualPedido";
-
-$wpdb->query($wpdb->prepare($sql));
+$cualPedido_int = (int) $cualPedido;
+$sql = $wpdb->prepare(
+    "UPDATE $tabla_asignacion_tiendas SET status = 3, fin_asignacion = %s WHERE pedido_id = %d",
+    $fecha,
+    $cualPedido_int
+);
+$wpdb->query($sql);

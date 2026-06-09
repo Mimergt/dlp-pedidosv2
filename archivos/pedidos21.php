@@ -587,9 +587,12 @@ if ( window.history.replaceState ) {
 
 FIN;
 
+        $dlp_ajax_url = esc_url( admin_url('admin-ajax.php') );
         echo <<<JS
 <script>
 jQuery(function($){
+    var dlpAjaxUrl = '$dlp_ajax_url';
+
     $(document).on('click', '.btnCancela21', function () {
         var pedidoId = $(this).data('id');
 
@@ -636,8 +639,10 @@ jQuery(function($){
                 motivo: result.value
             };
 
-            $.post(ajax_object.ajax_url, data, function () {
+            $.post(dlpAjaxUrl, data, function () {
                 location.reload(true);
+            }).fail(function(xhr){
+                Swal.fire('Error', 'No se pudo cancelar el pedido ('+xhr.status+')', 'error');
             });
         });
     });
