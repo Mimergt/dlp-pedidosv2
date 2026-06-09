@@ -125,3 +125,16 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
   - Se removio `Update URI`.
   - Se reemplazo `GitHub Branch` por `Primary Branch: main`.
 - Nueva version: `1.3.2.5`.
+
+### Ajuste panel 2.1 (2026-06-09)
+
+- Tras reinstalar plugin, cancelar funciono correctamente.
+- Se reporto que faltaban acciones de estado en panel 2.1.
+- Se restauraron botones de estado sin reintroducir opciones de motorista:
+  - Delivery `processing` -> `dlv` ("El pedido esta listo para enviarse")
+  - Delivery `dlv` -> `completed` ("El pedido fue entregado")
+  - Pickup `processing` -> `dlv` ("Listo para Entregar")
+  - Pickup `dlv/rtp` -> `completed` ("Finalizado / Entregado")
+- Se mantiene:
+  - Cambiar de tienda
+  - Cancelar pedido con motivo obligatorio

@@ -273,6 +273,35 @@ ACA;
 </form>
 ACA;
 
+            $accionTipo = '';
+            $accionBotonTexto = '';
+
+            if ($order_type_text === "Delivery") {
+                if ($order->get_status() === "processing") {
+                    $accionTipo = "dlv";
+                    $accionBotonTexto = "El pedido esta listo para enviarse";
+                } elseif ($order->get_status() === "dlv") {
+                    $accionTipo = "completed";
+                    $accionBotonTexto = "El pedido fue entregado";
+                }
+            } else {
+                if ($order->get_status() === "processing") {
+                    $accionTipo = "dlv";
+                    $accionBotonTexto = "Listo para Entregar";
+                } elseif ($order->get_status() === "dlv" || $order->get_status() === "rtp") {
+                    $accionTipo = "completed";
+                    $accionBotonTexto = "Finalizado / Entregado";
+                }
+            }
+
+            if (!empty($accionTipo)) {
+                echo "<form id='woofood_status_order_form_$order_id' action='' method='POST' class='form-inline ml-2'>";
+                echo "<input type='hidden' name='action' value='$accionTipo'/>";
+                echo "<input type='hidden' name='order_id' value='$order_id'/>";
+                echo "<button class='btn btn-success' type='submit'>$accionBotonTexto</button>&nbsp;&nbsp;&nbsp;&nbsp;";
+                echo "</form>";
+            }
+
             if($order->get_status() === "processing" || $order->get_status() === "dlv") {
                 echo "<button class='btn btn-danger btnCancela21' data-id='$order_id'>Cancelar pedido</button>";
             }
