@@ -97,3 +97,12 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
 ### Estado
 
 - Commit publicado en GitHub con el fix de cancelacion.
+
+### Ajuste adicional (2026-06-09)
+
+- Persistia el problema en dev: popup ok pero pedido no cambiaba de estado.
+- Se reforzo el endpoint `cancelar_pedido` directamente en `manejoPedidos.php` con respuestas JSON (`wp_send_json_success/error`).
+- Se agregaron validaciones de `cualPedido` y existencia de orden.
+- Se cambio el frontend de `pedidos21.php` para esperar respuesta JSON y solo recargar al `success=true`.
+- Se agrego visualizacion de mensaje de error devuelto por backend.
+- Se incremento version del plugin a `1.3.2.3` para facilitar verificacion de despliegue.

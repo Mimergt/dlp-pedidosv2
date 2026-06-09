@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:  Manejo de ordenes y delivery version 2
- * Version:      1.3.2.2
+ * Version:      1.3.2.3
  */
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
@@ -163,9 +163,42 @@ function funcion_review() {
 add_action( 'wp_ajax_cancelar_pedido', 'cancelar_pedido' );
 function cancelar_pedido() {
     global $wpdb;
-    require_once plugin_dir_path( __FILE__ ).'includes/cancelar_pedido.php';
+    $cualPedido = isset($_POST['cualPedido']) ? absint($_POST['cualPedido']) : 0;
+    $motivo = isset($_POST['motivo']) ? sanitize_textarea_field($_POST['motivo']) : '';
 
-    wp_die();
+    if (!$cualPedido) {
+        wp_send_json_error(array('message' => 'Pedido invalido'), 400);
+    }
+
+    $order = wc_get_order($cualPedido);
+    if (!$order) {
+        wp_send_json_error(array('message' => 'Pedido no encontrado'), 404);
+    }
+
+    try {
+        $order->update_status('cancelled');
+
+        if (!empty($motivo)) {
+            $order->add_order_note('Motivo de cancelacion: '.$motivo);
+            update_post_meta($cualPedido, '_motivo_cancelacion_tienda', $motivo);
+        }
+
+        $fecha = date('Y-m-d H:i:s');
+        $tabla_asignacion_tiendas = $wpdb->prefix . 'a_asignacion_pedidos';
+        $sql = $wpdb->prepare(
+            "UPDATE $tabla_asignacion_tiendas SET status = 3, fin_asignacion = %s WHERE pedido_id = %d",
+            $fecha,
+            $cualPedido
+        );
+        $wpdb->query($sql);
+
+        wp_send_json_success(array(
+            'order_id' => $cualPedido,
+            'new_status' => $order->get_status(),
+        ));
+    } catch (Exception $e) {
+        wp_send_json_error(array('message' => $e->getMessage()), 500);
+    }
 }
 
 add_action( 'wp_ajax_busco_motoristas', 'busco_motoristas' );

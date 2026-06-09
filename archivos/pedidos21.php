@@ -639,8 +639,19 @@ jQuery(function($){
                 motivo: result.value
             };
 
-            $.post(dlpAjaxUrl, data, function () {
-                location.reload(true);
+            $.ajax({
+                url: dlpAjaxUrl,
+                type: 'POST',
+                dataType: 'json',
+                data: data
+            }).done(function(resp){
+                if (resp && resp.success) {
+                    location.reload(true);
+                    return;
+                }
+
+                var msg = (resp && resp.data && resp.data.message) ? resp.data.message : 'No se pudo cancelar el pedido';
+                Swal.fire('Error', msg, 'error');
             }).fail(function(xhr){
                 Swal.fire('Error', 'No se pudo cancelar el pedido ('+xhr.status+')', 'error');
             });
