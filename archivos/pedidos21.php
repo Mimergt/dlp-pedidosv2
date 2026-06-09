@@ -267,7 +267,7 @@ ACA;
 <nav class="navbar navbar-expand-lg $fondo ">
 ACA;
 
-            if ($order_type_text === "Delivery") {
+            if ($order_type_text === "Delivery" && $order->get_status() === "processing") {
                 echo <<<FORM
 <form id="woofood_complete_order_form_$order_id" action="" method="POST" class="form-inline ml-2">
     <input type="hidden" name="action" value="cambiarTienda"/>
@@ -308,7 +308,7 @@ FORM;
             }
 
             if($order->get_status() === "processing" || $order->get_status() === "dlv") {
-                echo "<button class='btn btn-danger btnCancela21' data-id='$order_id'>Cancelar pedido</button>";
+                echo "<button class='btn btn-dark btnCancela21' data-id='$order_id'>Cancelar pedido</button>";
             }
 
             echo <<<ACA

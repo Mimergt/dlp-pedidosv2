@@ -144,3 +144,8 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
 - En panel 2.1 se detecto que el selector `Cambiar de Tienda` aparecia tambien en ordenes Pickup.
 - Se corrigio para que solo se muestre en ordenes `Delivery`.
 - Comportamiento alineado con panel viejo.
+
+### Ajustes pequenos de UI (2026-06-09)
+
+- Boton `Cancelar pedido` en panel 2.1 cambiado a estilo negro (`btn-dark`) para mejor contraste.
+- Seccion `Cambiar de Tienda` ajustada para aparecer solo cuando el pedido esta en estado `processing` (Preparando).
