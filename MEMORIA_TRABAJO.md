@@ -117,3 +117,11 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
   - `GitHub Plugin URI`
   - `GitHub Branch`
 - Se incremento version a `1.3.2.4` para forzar deteccion de nueva revision.
+
+### Ajuste de compatibilidad updater (2026-06-09)
+
+- En dev aparecia error de activacion con URL `plugin=` vacia y mensaje de cabecera invalida.
+- Se simplifico cabecera para compatibilidad con Git Updater:
+  - Se removio `Update URI`.
+  - Se reemplazo `GitHub Branch` por `Primary Branch: main`.
+- Nueva version: `1.3.2.5`.
