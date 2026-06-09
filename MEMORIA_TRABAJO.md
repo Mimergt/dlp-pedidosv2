@@ -106,3 +106,14 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
 - Se cambio el frontend de `pedidos21.php` para esperar respuesta JSON y solo recargar al `success=true`.
 - Se agrego visualizacion de mensaje de error devuelto por backend.
 - Se incremento version del plugin a `1.3.2.3` para facilitar verificacion de despliegue.
+
+### Ajuste de cabecera para actualizacion desde repo (2026-06-09)
+
+- Se reporto error al activar/actualizar desde repo: `Datos facilitados no validos`.
+- Se verifico que no hay errores de sintaxis PHP ni BOM en archivo principal.
+- Se reforzo cabecera del plugin para herramientas de update desde GitHub:
+  - `Plugin URI`
+  - `Update URI`
+  - `GitHub Plugin URI`
+  - `GitHub Branch`
+- Se incremento version a `1.3.2.4` para forzar deteccion de nueva revision.

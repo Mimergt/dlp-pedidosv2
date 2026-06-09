@@ -1,7 +1,11 @@
 <?php
 /**
  * Plugin Name:  Manejo de ordenes y delivery version 2
- * Version:      1.3.2.3
+ * Plugin URI:   https://github.com/Mimergt/dlp-pedidosv2
+ * Version:      1.3.2.4
+ * Update URI:   https://github.com/Mimergt/dlp-pedidosv2
+ * GitHub Plugin URI: Mimergt/dlp-pedidosv2
+ * GitHub Branch: main
  */
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
