@@ -69,3 +69,31 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
   - `appMotoristas/mapaElmer.js`
   - `monitoreoDelivery/mapasSeguimiento/mapa_modal.js`
   - `monitoreoDelivery/mapasSeguimiento/mapas_seguimiento_pedidos.js`
+
+---
+
+## 2026-06-09
+
+### Solicitud
+
+- El boton de cancelar en panel 2.1 mostraba popup, pero no cambiaba el estado del pedido.
+
+### Diagnostico
+
+- Dependencia fragil de `ajax_object.ajax_url`: si el slug de pagina no coincide, la variable no existe.
+- Uso incorrecto de `$wpdb->prepare($sql)` sin placeholders en cancelacion.
+
+### Cambios aplicados
+
+- Se inyecto la URL de AJAX desde PHP dentro del script inline de `pedidos21.php`.
+- Se agrego manejo de fallo en el `$.post(...).fail(...)` para mostrar error visible.
+- Se corrigio el query de `includes/cancelar_pedido.php` para usar `prepare` con `%s` y `%d`.
+
+### Archivos tocados
+
+- `archivos/pedidos21.php`
+- `includes/cancelar_pedido.php`
+
+### Estado
+
+- Commit publicado en GitHub con el fix de cancelacion.
