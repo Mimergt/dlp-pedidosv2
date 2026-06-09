@@ -138,3 +138,9 @@ Este archivo sirve para llevar el historial de lo solicitado, lo implementado y 
 - Se mantiene:
   - Cambiar de tienda
   - Cancelar pedido con motivo obligatorio
+
+### Ajuste visual de reglas por tipo de orden (2026-06-09)
+
+- En panel 2.1 se detecto que el selector `Cambiar de Tienda` aparecia tambien en ordenes Pickup.
+- Se corrigio para que solo se muestre en ordenes `Delivery`.
+- Comportamiento alineado con panel viejo.

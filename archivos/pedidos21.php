@@ -265,13 +265,18 @@ ACA;
             echo <<<ACA
 
 <nav class="navbar navbar-expand-lg $fondo ">
+ACA;
+
+            if ($order_type_text === "Delivery") {
+                echo <<<FORM
 <form id="woofood_complete_order_form_$order_id" action="" method="POST" class="form-inline ml-2">
     <input type="hidden" name="action" value="cambiarTienda"/>
     <input type="hidden" name="order_id" value="$order_id"/>
     &nbsp;&nbsp;&nbsp;&nbsp;$sel&nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-success" type="submit">Cambiar de Tienda</button>&nbsp;&nbsp;&nbsp;&nbsp;
 </form>
-ACA;
+FORM;
+            }
 
             $accionTipo = '';
             $accionBotonTexto = '';
